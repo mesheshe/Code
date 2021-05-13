@@ -22,12 +22,19 @@ app.get('/',function(req,res){
 });
 
 app.post('/',function(req,res){
-  var ret = {}
+  var ret = {};
   var arr = [];
+  var arr2 = [];
   for(var p in req.body){
     arr.push({'name':p,'value':req.body[p]});
   }
-  ret.data = arr;
+  if (req.query != null){
+    for (var q in req.query){
+      arr2.push({'name':q,'value':req.query[q]});
+    }
+  }
+  ret.dataBody = arr;
+  ret.dataQuery = arr2;
   res.render('data-post',ret);
 });
 

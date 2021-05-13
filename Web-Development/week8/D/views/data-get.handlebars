@@ -1,6 +1,15 @@
-<h1>A GET form was submitted, and your data is...</h1>
-<ul>
+<h1>GET Request Received</h1>
+<table>
+   <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+    </tr>
+   </thead>
   {{#each data}}
-    <li>{{this.name}}: {{this.value}}
+    <tr>
+      <td>{{this.name}}</td>
+      <td>{{this.value}}</td>
+    </tr>
   {{/each}}
-</ul>
+</table>

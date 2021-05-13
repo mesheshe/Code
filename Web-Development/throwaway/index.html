@@ -1,22 +1,79 @@
 <!doctype html>
-<script src="code/scripts.js"></script>
-<script src="code/chapter/05_higher_order.js"></script>
-<script src="code/intro.js"></script>
+<style>
+  table{
+    border-collapse: collapse;
+  }
+  td+td{
+    border-left: solid;
+  }
+  th{
+    border-bottom: solid;
+    text-align: left;
+  }
+  th+th{
+    border-left: solid;
+  }
+  .idd{
+    text-align: center;
+  }
 
-<body><script>
-function textScripts(text) {
-  let scripts = countBy(text, char => {
-    let script = characterScript(char.codePointAt(0));
-    return script ? script.name : "none";
-  }).filter(({name}) => name != "none");
+</style>
+<html>
+  <head>
+   <title>My Page</title>
+  </head>
+  <body>
+   <h1>POST Request Received</h1>
+<table>
+   <thead>
+     <tr><th colspan="2">----<strong>Via Query</strong>----</th></tr>
+   </thead>
+   <tbody>
+   <tr>
+      <th>Name</th>
+      <th>Value</th>
+   </tr> 
+   <tr>
+      <td>candy</td>
+      <td>bword</td>
+    </tr>
+    <tr>
+      <td>lets</td>
+      <td>cads</td>
+    </tr>
+  </tbody>
+</table>
 
-  let total = scripts.reduce((n, {count}) => n + count, 0);
-  if (total == 0) return "No scripts found";
-
-  return scripts.map(({name, count}) => {
-    return `${Math.round(count * 100 / total)}% ${name}`;
-  }).join(", ");
-}
-
-console.log(textScripts('英国的狗说"woof", 俄罗斯的狗说"тяв"'));
-</script></body>
+<table>
+   <thead>
+    <tr class="idd">----<strong>Via Body</strong>----</tr>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+      <td>Hdsafdsafdsafdsello</td>
+      <td>my darling</td>
+    </tr>
+    <tr>
+      <td>hello</td>
+      <td>my baby</td>
+    </tr>
+    <tr>
+      <td>thisdsafdsafd</td>
+      <td>is tom</td>
+    </tr>
+    <tr>
+      <td>fromdsafds</td>
+      <td>downstairs</td>
+    </tr>
+    <tr>
+      <td>I havedasfdsaf</td>
+      <td>come for you</td>
+    </tr>
+   </tbody>
+</table>
+  </body>
+</html>

@@ -1,6 +1,31 @@
-<h1>A post form was submitted, and your data is...</h1>
-<ul>
-  {{#each data}}
-    <li>{{this.name}}: {{this.value}}
+<h1>POST Request Received</h1>
+<table>
+  <thead>
+   <tr><th class ="idd" colspan="2">------Via Query------</th></tr>
+  </thead>
+  <tr>
+    <th>Name</th>
+    <th>Value</th>
+  </tr>
+  {{#each dataQuery}}
+    <tr>
+      <td>{{this.name}}</td>
+      <td>{{this.value}}</td>
+    </tr>
   {{/each}}
-</ul>
+</table>
+<table>
+   <thead>
+    <tr><th class ="idd" colspan="2">------Via Body------</th></tr>
+   </thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+    </tr>
+  {{#each dataBody}}
+    <tr>
+      <td>{{this.name}}</td>
+      <td>{{this.value}}</td>
+    </tr>
+  {{/each}}
+</table>
