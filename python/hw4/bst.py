@@ -450,13 +450,10 @@ class BST:
 # BASIC TESTING - PDF EXAMPLES
 
 if __name__ == '__main__':
-    """ remove() example 3 """
-    print("\nPDF - method remove() example 3")
-    print("-------------------------------")
-    tree = BST([ 0, -3, -3, -2,5, 9, 8, 8, 8, 10])
-    print(tree.remove(5))
-    print(tree)
-    # comment out the following lines
-    # if you have not yet implemented traversal methods
-    print(tree.pre_order_traversal())
-    print(tree.post_order_traversal())
+    def test():
+        tree = BST()
+        for value in ['N', 'E', 'W', 'B', 'G','Q', 'Z','A', 'C','F', 'I', 'P', 'S','X']:
+            tree.add(value)
+            print(tree.is_complete())
+
+    test()
