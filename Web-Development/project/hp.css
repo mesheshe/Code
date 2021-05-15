@@ -9,6 +9,8 @@ div{
 }
 #HorizantalBanner{
     border: solid;
+    position: fixed;
+    max-width: 50px;
 }
 #content{
     border:solid;
