@@ -450,10 +450,4 @@ class BST:
 # BASIC TESTING - PDF EXAMPLES
 
 if __name__ == '__main__':
-    def test():
-        tree = BST()
-        for value in ['N', 'E', 'W', 'B', 'G','Q', 'Z','A', 'C','F', 'I', 'P', 'S','X']:
-            tree.add(value)
-            print(tree.is_complete())
-
-    test()
+    pass

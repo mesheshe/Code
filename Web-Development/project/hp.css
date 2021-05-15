@@ -1,7 +1,62 @@
+div{
+    position: relative;
+    max-width:1000px;
+    min-width: 250px;
+    margin:auto;
+}
 #bannar{
     border: solid;
 }
-#verticalBannar{
+#HorizantalBanner{
     border: solid;
-    max-width: 150px;
+}
+#content{
+    border:solid;
+}
+
+.carouselContent{
+    display: none;
+}
+.carouselContainer{
+    border:solid;
+}
+.carouselTrackerContianer{
+    text-align: center;
+}
+.carouselTracker{
+    cursor: pointer;
+}
+.left{
+    z-index: auto; /*Pushes .left to be the forefront of everything*/
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+.right{
+    z-index: auto;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 95%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none
+}
+
+img{
+    width:100%;
 }
