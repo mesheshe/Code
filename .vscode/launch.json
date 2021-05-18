@@ -6,6 +6,21 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch AnagramMain",
+            "cwd": "C:\\Users\\alias\\Desktop\\Code\\Java\\ass6",
+            "request": "launch",
+            "mainClass": "AnagramMain",
+            "projectName": "Code_c7451bde"
+        },
+        {
+            "type": "java",
+            "name": "Launch Queens2",
+            "request": "launch",
+            "mainClass": "Queens2",
+            "projectName": "Code_c7451bde"
+        },
+        {
+            "type": "java",
             "name": "Launch Test",
             "request": "launch",
             "mainClass": "Test",

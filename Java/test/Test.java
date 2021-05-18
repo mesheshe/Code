@@ -1,6 +1,4 @@
 import java.util.*;
-
-import jdk.internal.jshell.tool.resources.l10n;
 public class Test{
    public static void main(String[] args){
       int i = 5555;

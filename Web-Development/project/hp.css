@@ -3,19 +3,77 @@ div{
     max-width:1000px;
     min-width: 250px;
     margin:auto;
+    overflow:auto;
 }
 #bannar{
     border: solid;
+    background-color:lightblue;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.rocket{
+    position: relative; 
+    font-size:120%;
+    margin:none;
+}
+
+#centerMe{
+    position: relative;
+    display: table;
+    margin:0 auto;
+
+}
+
+.title-logo + .rocket{
+    margin: none;
+    position: relative; 
+}
+
+#title{
+    width: 210px;
+}
+#bannar span{
+    float: left;
 }
 #HorizantalBanner{
     border: solid;
-    position: fixed;
-    max-width: 50px;
+    height: auto;
+    position: relative;
+    background-color: rgb(248, 247, 247);
 }
+
+#HorizantalBanner a{
+    position: relative;
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+    float: left;
+    height: 50%;
+}
+#HorizantalBanner a.Active{
+    background-color: green;
+    color: white;
+}
+#HorizantalBanner a.notActive:hover{
+    background-color: darkslategrey;
+    color: white;
+    cursor: pointer;
+}
+@media screen and (max-width: 600px){
+    #HorizantalBanner a{
+        text-align: center;
+        float: none;
+    }
+}
+
 #content{
     border:solid;
 }
-
+#content > div{
+    padding: 2%;
+}
 .carouselContent{
     display: none;
 }
@@ -39,9 +97,7 @@ div{
     color: white;
     font-weight: bold;
     font-size: 18px;
-    transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
-    user-select: none;
   }
 .right{
     z-index: auto;
@@ -54,9 +110,7 @@ div{
     color: white;
     font-weight: bold;
     font-size: 18px;
-    transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
-    user-select: none
 }
 
 img{
