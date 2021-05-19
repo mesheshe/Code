@@ -1,0 +1,22 @@
+  table{
+    border-collapse: collapse;
+  }
+  td+td{
+    border-left: solid;
+  }
+  th{
+    border-bottom: solid;
+    text-align: left;
+  }
+  th+th{
+    border-left: solid;
+  }
+  .idd{
+    border-bottom: none;
+    text-align: center;
+  }
+
+  #displayInput{
+    display: none;
+  }
+

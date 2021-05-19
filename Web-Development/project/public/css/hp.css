@@ -12,6 +12,11 @@ div{
     padding-top: 10px;
 }
 
+input[type = submit]{
+    background:none;
+    border:none;
+}
+
 .rocket{
     position: relative; 
     font-size:120%;
@@ -43,7 +48,7 @@ div{
     background-color: rgb(248, 247, 247);
 }
 
-#HorizantalBanner a{
+#HorizantalBanner input[type = submit]{
     position: relative;
     display: block;
     color: black;
@@ -52,17 +57,17 @@ div{
     float: left;
     height: 50%;
 }
-#HorizantalBanner a.Active{
+#HorizantalBanner input[type = submit].Active{
     background-color: green;
     color: white;
 }
-#HorizantalBanner a.notActive:hover{
+#HorizantalBanner input[type = submit].notActive:hover{
     background-color: darkslategrey;
     color: white;
     cursor: pointer;
 }
 @media screen and (max-width: 600px){
-    #HorizantalBanner a{
+    #HorizantalBanner input[type = submit]{
         text-align: center;
         float: none;
     }
