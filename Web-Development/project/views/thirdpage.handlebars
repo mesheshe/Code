@@ -1,0 +1,65 @@
+<div id = "bannar">
+    <div id = "centerMe">
+    <span class = "rocket" >&#128640;</span>
+    <span class = "title-logo"><img id = "title" src = "other/title.png"></img></span>
+    <span class = "rocket" >&#128640;</span>
+    </div>
+</div>
+<div id = "HorizantalBanner">
+    <a href = '/' class = "notActive">Example 1</a>
+    <a href = '/second-page' class = "notActive">Example 2</a>
+    <a href = '/third-page' class = "Active" >Example 3</a>
+    <a href = '/fourth-page' class = "notActive">Example 4</a>
+</div>
+<div id = "content">
+    <div>
+        <h1>Header 1</h1>
+        <p>
+            Space is cool burhdd
+        </p>
+        <h3>Header 2</h3>
+        <p translate="no">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
+            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+            id est laborum.
+        </p>
+        <br>
+        <h2>Leave a Comment</h2>
+        <form> <!--Don't actually catch anything, this will be an ajax call-->
+            <textarea name = "text" id ="textArea" rows="4" cols="40" placeholder="Enter Text Here..."></textarea>
+            <br>
+            <input type = "submit" id = "textAreaSubmit" name = "comment" value = "Post Comment">
+        </form>
+        <!-- Example of output {"id":23,"name":"Anon","content":"cd","postedAt":"2021-05-02T07:00:00.000Z"}-->
+        <div id = "putCommentsHere">
+            {{#each comment}}
+                <div class = "commentbox">
+                    <span class = "profilepic">
+                        <img src = "/other/Profilepic.png">
+                    </span>
+                    <span class = "username">{{this.name}}:</span>
+                    <div class = "commentContainer">{{this.content}}</div>
+                </div>                
+            {{/each}}
+        </div>
+    </div>
+</div>
+<script src = "js/thirdpage.js"></script>
+<!--
+
+-->
+<!--
+<table>
+    <tr>
+        <td class = "profilepic"><img src = "/other/Profilepic.png"></td>
+        <td rowspan = "2"><div class = "commentContainer">{{this.content}}</div></td>
+    </tr>
+    <tr>
+        <td><span class = "username">{{this.name}}</span></td>
+    </tr>
+</table>
+-->

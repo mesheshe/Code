@@ -97,8 +97,3 @@ if (s){
     showCarousel();
     s = false;
 }
-
-function go2Page(str){
-    console.log(str);
-    // set up a get request to a server where you change the last bit 
-}

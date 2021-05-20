@@ -5,16 +5,16 @@ div{
     margin:auto;
     overflow:auto;
 }
+/*
+#putCommentsHere > #commentbox{
+    display: block;
+}
+*/
 #bannar{
     border: solid;
     background-color:lightblue;
     padding-bottom: 10px;
     padding-top: 10px;
-}
-
-input[type = submit]{
-    background:none;
-    border:none;
 }
 
 .rocket{
@@ -48,7 +48,7 @@ input[type = submit]{
     background-color: rgb(248, 247, 247);
 }
 
-#HorizantalBanner input[type = submit]{
+#HorizantalBanner a{
     position: relative;
     display: block;
     color: black;
@@ -57,17 +57,17 @@ input[type = submit]{
     float: left;
     height: 50%;
 }
-#HorizantalBanner input[type = submit].Active{
+#HorizantalBanner a.Active{
     background-color: green;
     color: white;
 }
-#HorizantalBanner input[type = submit].notActive:hover{
+#HorizantalBanner a.notActive:hover{
     background-color: darkslategrey;
     color: white;
     cursor: pointer;
 }
 @media screen and (max-width: 600px){
-    #HorizantalBanner input[type = submit]{
+    #HorizantalBanner a{
         text-align: center;
         float: none;
     }
@@ -120,4 +120,28 @@ input[type = submit]{
 
 img{
     width:100%;
+}
+
+
+.commentbox{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.profilepic{
+    float: left;
+}
+
+.profilepic > img{
+    width: 55px;
+    height:auto;
+}
+
+.username{
+    margin-bottom: 2%;
+}
+.commentContainer{
+    float:none;
+    width: auto;
+    word-wrap: break-word;
 }
