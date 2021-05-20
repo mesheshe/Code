@@ -1,0 +1,36 @@
+<div id = "bannar">
+    <div id = "centerMe">
+    <span class = "rocket" >&#128640;</span>
+    <span class = "title-logo"><img id = "title" src = "other/title.png"></img></span>
+    <span class = "rocket" >&#128640;</span>
+    </div>
+</div>
+<div id = "HorizantalBanner">
+    <a href = '/' class = "notActive">Example 1</a>
+    <a href = '/second-page' class = "notActive">Example 2</a>
+    <a href = '/third-page' class = "notActive" >Example 3</a>
+    <a href = '/fourth-page' class = "Active">Example 4</a>
+</div>
+<div id = "content">
+    <div>
+        <h1>Header 1</h1>
+        <p>
+            Space is cool burhdd
+        </p>
+        <h3>Header 2</h3>
+        <p translate="no">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
+            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+            id est laborum.
+        </p>
+        <ul>
+        {{#each pageVisit}}
+            <li>You have visited '<strong>{{this.name}}</strong>', {{visit}} times.</li>
+        {{/each}}
+        </ul>
+    </div>
+</div>

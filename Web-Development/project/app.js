@@ -31,10 +31,18 @@ mysql.pool.getConnection(function(error){
 });
 
 app.get('/', function(req,res){
+  if (!req.session.pageVisit){
+    req.session.pageVisit = [{name:"Example 1",visit:0}, {name:"Example 2",visit:0}, {name:"Example 3",visit:0},{name:"Example 4",visit:0}];
+  }
+  req.session.pageVisit[0].visit += 1;
   res.render("homepage");
 });
 
 app.get('/second-page', function(req,res){
+  if (!req.session.pageVisit){
+    req.session.pageVisit = [{name:"Example 1",visit:0}, {name:"Example 2",visit:0}, {name:"Example 3",visit:0},{name:"Example 4",visit:0}];
+  }
+  req.session.pageVisit[1].visit += 1;
   res.render("secondpage");
 });
 
@@ -51,6 +59,10 @@ app.get('/third-page', function(req,res,next){
         arr.unshift(obj);  // in order to have the most recent comments on top
       })
       context.comment = arr
+      if (!req.session.pageVisit){
+        req.session.pageVisit = [{name:"Example 1",visit:0}, {name:"Example 2",visit:0}, {name:"Example 3",visit:0},{name:"Example 4",visit:0}];
+      }
+      req.session.pageVisit[2].visit += 1;
       res.render("thirdpage", context)
     }
   })
@@ -75,7 +87,13 @@ app.post('/third-page', function(req,res,next){
 });
 
 app.get('/fourth-page', function(req,res){
-  res.render("homepage");
+  context = {};
+  if (!req.session.pageVisit){
+    req.session.pageVisit = [{name:"Example 1",visit:0}, {name:"Example 2",visit:0}, {name:"Example 3",visit:0},{name:"Example 4",visit:0}];
+  }
+  req.session.pageVisit[3].visit += 1;
+  context.pageVisit = req.session.pageVisit;
+  res.render("fourthpage", context);
 });
 
 app.use(function(req,res){
