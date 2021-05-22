@@ -3,10 +3,14 @@ function showCarousel(num = 0){
     caro = Array.from(caro);
     var dots = document.getElementsByClassName("carouselTracker");
     dots = Array.from(dots);
+    var imgsource = document.getElementsByClassName("imgsource")
+    imgsource = Array.from(imgsource)
     caro.forEach(x => x.style.display = "None");
     dots.forEach(x => x.style.color = "lightgrey");
+    imgsource.forEach(x => x.style.display = "None")
     caro[num].style.display = "block";
     dots[num].style.color = "grey";
+    imgsource[num].style.display = "";
     setTimeout(function(n, len){
         if (n + 1 === len){
             return function(){
@@ -72,23 +76,33 @@ right[0].addEventListener("click", function(){
     showCarousel(num);
 });
 document.addEventListener("visibilitychange", function(){
-    var caro = document.getElementsByClassName("carouselContent");
-    caro = Array.from(caro);
-    var num = -1;
-    for (var i = 0; i < caro.length; i++){
-        if (caro[i].style.display === "block"){
-            num = i;
-        }
-    }
-    if (num === -1){
-        num = 0;
-    }
+    // this function will pause the animation if user is not viewing the page
+    // In order to do this, it is a two step process. 
+    // First step is to save the current position, and that is done by
+    // checking if for all possible screens in carousel, if the current 
+    // screen is a block, if so, save the index. 
+    // Second step is to pause the screen and that is done by using the 
+    // visibiltyState event, and when it is not visible, all timers 
+    // are cleared, and the screen "pauses". 
+    // Once user is viewing the screen, the function showCarousel is called
+    // with the current index
     if (document.visibilityState !== 'visible'){
         var id = window.setTimeout(function() {}, 0);
         while (id--){  // not all browswer see if(0) as false 
             window.clearTimeout(id); 
         }
     }else{
+        var caro = document.getElementsByClassName("carouselContent");
+        caro = Array.from(caro);
+        var num = -1;
+        for (var i = 0; i < caro.length; i++){
+            if (caro[i].style.display === "block"){
+                num = i;
+            }
+        }
+        if (num === -1){
+            num = 0;
+        }
         showCarousel(num);
     }
 });
