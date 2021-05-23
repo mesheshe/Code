@@ -168,3 +168,21 @@ class DynamicArray:
     def length(self) -> int:
         """ Return the length of the DA """
         return len(self.data)
+    
+    def equals(self, arr: object) -> bool:
+        """Returns true if this array equals a given array"""
+        if self.length() != arr.length() or self.length() == 0:
+            return False
+        for i in range(self.length()):
+            if self.get_at_index(i) != arr.get_at_index(i):
+                return False
+        return True 
+
+    def __eq__(self, arr:object) -> bool:
+        """Returns true if this array equals a given array"""
+        if self.length() != arr.length() or self.length() == 0:
+            return False
+        for i in range(self.length()):
+            if self.get_at_index(i) != arr.get_at_index(i):
+                return False
+        return True 
