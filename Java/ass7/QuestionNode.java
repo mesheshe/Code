@@ -1,7 +1,7 @@
 public class QuestionNode {
-    String data; 
-    QuestionNode left;
-    QuestionNode right;
+    public String data; 
+    public QuestionNode left;
+    public QuestionNode right;
 
     // Constructs an answer node. An answer node is defined by the fact that 
     // it is a leaf node, that means it has no children and so it only has the

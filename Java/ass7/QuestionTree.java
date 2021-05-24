@@ -3,7 +3,7 @@ import java.util.*;
 
 public class QuestionTree {
     private Scanner console;
-    QuestionNode mainRoot;
+    private QuestionNode mainRoot;
 
     public QuestionTree(){
         console = new Scanner(System.in);
