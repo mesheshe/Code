@@ -26,7 +26,7 @@ mysql.pool.getConnection(function(error){
       }else{
         console.log("Database is primed");
       }
-    })
+    });
   }
 });
 
@@ -76,7 +76,7 @@ app.post('/third-page', function(req,res,next){
   //dat = dat.slice(0,index + 1);
   //console.log(dat);
   //include name if time 
-  mysql.pool.query("INSERT INTO commentData (`name`, `content`, `postedAt`) VALUES (?,?,?)", [context.name || "Anon", context.comment || "", dat],
+  mysql.pool.query("INSERT INTO commentData (`name`, `content`, `postedAt`) VALUES (?,?,?)", [context.name || "Anon", context.comment || "I <3 Space.", dat],
    function(error, result){
      if (error){
        next(error);
