@@ -171,12 +171,15 @@ img{
     word-wrap: break-word;
 }
 #scrollboxCont{
+    display: none;
     border-style: solid;
-    border-color:black;
+    background-color: antiquewhite;
+    border-color:grey;
 }
 #scrollboxTitle{
     border-bottom-style: solid;
-    border-bottom-color:black;
+    border-bottom-color:grey;
+    background-color: aliceblue;
     margin-bottom: 2%;
     font-size: large;
     padding: 1%;
@@ -193,10 +196,16 @@ img{
 }
 #scrollboxCont > #scrollboxContent{
     border-style: solid;
-    border-color: black;
+    border-color: grey;
+    background-color: blanchedalmond;
     width: 90%;
     height: 400px;
     padding:2%;
     margin-bottom:2%;
     
+}
+
+.vg{
+    width:400px;
+    padding-right: 1%;
 }

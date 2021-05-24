@@ -575,3 +575,9 @@ if __name__ == '__main__':
             raise Exception("PROBLEM WITH REMOVE OPERATION")
     print('remove() stress test finished')
     
+
+    avl = AVL([75, 70, 100, 60, 80, 105, 77, 120])
+    avl.remove(120)
+    print(avl)
+    avl.remove(60)
+    print(avl)
