@@ -11,11 +11,10 @@ var app = express();
 app.engine('handlebars',handlebars.engine);
 app.set('port', 9794);
 app.set('view engine','handlebars');
-app.set('views','./D/views');
 app.use(session({secret:'SuperSecretPassword'}));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
-app.use(express.static('D/supportingFiles'));
+app.use(express.static('supportingFiles'));
 
 app.get('/', function(req,res){
   res.render('home');
