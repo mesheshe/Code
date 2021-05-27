@@ -64,8 +64,7 @@ class HashMap:
         TODO: Write this implementation
         """
         for i in range(self.capacity):
-            self.buckets.get_at_index(i).head = None
-            self.buckets.get_at_index(i).size = 0
+            self.buckets.set_at_index(i, LinkedList()) 
         self.size = 0
 
     def get(self, key: str) -> object:
@@ -76,7 +75,7 @@ class HashMap:
             return None
         index = self.hash_function(key) % self.capacity
         LL = self.buckets.get_at_index(index)
-        return self.find_and_return_key(LL.head, key).value
+        return LL.contains(key).value
 
     def put(self, key: str, value: object) -> None:
         """
@@ -84,24 +83,12 @@ class HashMap:
         """
         index = self.hash_function(key) % self.capacity
         LL = self.buckets.get_at_index(index)
-        node = self.find_and_return_key(LL.head, key)
+        node = LL.contains(key)
         if node is not None:
             node.value = value
         else:
-            node = SLNode(key, value)
-            node.next = LL.head
-            LL.head = node
-            LL.size += 1        
+            LL.insert(key, value)
             self.size += 1
-
-    def find_and_remove_key(self, node, key):
-        if node is not None:
-            if node.key == key:
-                return node.next
-            else:
-                node.next = self.find_and_remove_key(node.next, key)
-                
-        return node
 
     def remove(self, key: str) -> None:
         """
@@ -109,32 +96,18 @@ class HashMap:
         """
         if not self.contains_key(key):
             return
-            
         index  = self.hash_function(key) % self.capacity
         LL = self.buckets.get_at_index(index)
-        LL.head = self.find_and_remove_key(LL.head, key)
-        LL.size -= 1
+        LL.remove(key)
         self.size -= 1
         
-
-    def find_and_return_key(self, node, key):
-        if node is not None:
-            if node.key == key:
-                return node
-            else:
-                node = self.find_and_return_key(node.next, key)
-        else:
-            return None
-
-        return node
-
     def contains_key(self, key: str) -> bool:
         """
         TODO: Write this implementation
         """
         index = self.hash_function(key) % self.capacity
         LL = self.buckets.get_at_index(index)
-        node =  self.find_and_return_key(LL.head, key)
+        node =  LL.contains(key)
         return node is not None
 
     def empty_buckets(self) -> int:
@@ -143,7 +116,7 @@ class HashMap:
         """
         count = 0
         for i in range(self.capacity):
-            if self.buckets.get_at_index(i).head is None:
+            if self.buckets.get_at_index(i).length() == 0:
                 count += 1 
         return count
 
@@ -162,10 +135,8 @@ class HashMap:
         newMap = HashMap(new_capacity, self.hash_function)
         for i in range(self.capacity):
             bucketAti = self.buckets.get_at_index(i)
-            node = bucketAti.head
-            for j in range(bucketAti.size):
+            for node in bucketAti:
                 newMap.put(node.key,node.value)
-                node = node.next
         self.buckets = newMap.buckets
         self.capacity = new_capacity
 
@@ -177,11 +148,8 @@ class HashMap:
         
         for i in range(self.capacity):
             bucketAti = self.buckets.get_at_index(i)
-            node = bucketAti.head
-            for j in range(bucketAti.size):
-                returnDA.append(node.key)
-                node = node.next
-        
+            for node in bucketAti:
+                returnDA.append(node.key)        
         return returnDA
 
 
