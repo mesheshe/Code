@@ -1,0 +1,39 @@
+<h1>Updating Exercise</h1>
+{{#each results}}
+<form>
+    <table>
+        <tr>
+            <td class = "no"><label>Workout Name:</label></td>
+            <td class = "no"><input id = "name" type = "text" value = {{this.name}}></td>
+        </tr> 
+        <tr>
+            <td class = "no"><label>Num of Reps:</label></td>
+            <td class = "no"><input id = "reps" type = "number" min = "0" value = {{this.reps}}></label></td>
+        </tr>
+        <tr>
+            <td class = "no"><label>Weight: </label></td>
+            <td class = "no"><input id = "weight" type = "number" min = "0" value = {{this.weight}}>
+            {{#if this.lbs}}
+            <input type = "radio" id = "lbs" name = "unit" value = "lbs" checked> <label for = "lbs">lbs</label>
+            <input type = "radio" id = "kg" name = "unit" value = "kg"> <label for = "kg">kg</label></td>
+            {{else}}
+            <input type = "radio" id = "lbs" name = "unit" value = "lbs"> <label for = "lbs">lbs</label>
+            <input type = "radio" id = "kg" name = "unit" value = "kg" checked> <label for = "kg">kg</label></td>
+            {{/if}}
+        </tr>
+        <tr>
+            <td class = "no"><label>Date:</label></td> 
+            <td class = "no"><input type = "date" id = "date" value = {{this.date}}></td>
+        </tr>
+        <tr>
+            <td><br></td>
+        </tr>
+        <tr>
+            <input type = "hidden" id="id" name = "id" value = {{this.id}}>
+            <td class = "no"><input id = "submit1" type = "submit" value = "Save & Exit"></td>
+            <td class = "no"><input id = "submit2" type = "submit" value = "Cancel"></td>
+        </tr>
+    </table>
+</form>
+{{/each}}
+<script src = "/js/update.js"></script>

@@ -1,0 +1,42 @@
+<input type = "button" id = "clearButton" value = "Clear Table">
+<form id = "firstForm">
+    <table>
+        <tr>
+            <td class = "no"><label>Workout Name:</label></td>
+            <td class = "no"><input id = "name" type = "text"></td>
+        </tr> 
+        <tr>
+            <td class = "no"><label>Num of Reps:</label></td>
+            <td class = "no"><input id = "reps" type = "number" min = "0"></label></td>
+        </tr>
+        <tr>
+            <td class = "no"><label>Weight: </label></td>
+            <td class = "no"><input id = "weight" type = "number" min = "0">
+            <input type = "radio" id = "lbs" name = "unit" value = "lbs" checked> <label for = "lbs">lbs</label>
+            <input type = "radio" id = "kg" name = "unit" value = "kg"> <label for = "kg">kg</label></td>
+        </tr>
+        <tr>
+            <td class = "no"><label>Date:</label></td> 
+            <td class = "no"><input type = "date" id = "date"></td>
+        </tr>
+        <tr>
+            <td class = "no"><input id = "submit1" type ="submit" value = "Add Exercise"></td>
+        </tr>
+    </table>
+</form>
+<br>
+<table CELLSPACING = 0 BORDER = 0>
+    <thead>
+        <th style = "display:none;">id</th>
+        <th>name</th>
+        <th>reps</th>
+        <th>weight</th>
+        <th>unit</th>
+        <th>date</th>
+    </thead>
+    <tbody id = "insertHere">
+
+    </tbody>
+</table>
+
+<script src = "/js/body.js"></script>

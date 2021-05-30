@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var session = require('express-session');
 var request = require('request');
-
+var mysql = require('./pool.js')
 //http://api.openweathermap.org/data/2.5/weather?q=${cityInput.value},${stateInput.value},us&units=metric,&appid=${apiKey}
 var apiKey = 'fa7d80c48643dfadde2cced1b1be6ca1';
 var app = express();
@@ -16,6 +16,22 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(express.static('supportingFiles'));
 
+mysql.pool.getConnection(function(error){
+  if (error){
+    console.log(error)
+    throw error;
+  }else{
+    console.log("connecting")
+    mysql.pool.query('CREATE TABLE IF NOT EXISTS todo(id INT PRIMARY KEY AUTO_INCREMENT, task VARCHAR(255), done BOOLEAN, due DATE)', function(err){
+      if (err){
+        console.log(err);
+      }else{
+        console.log("connected")
+      }
+    });
+  }
+});
+
 app.get('/', function(req,res){
   res.render('home');
 });
@@ -24,24 +40,62 @@ app.get('/other-page', function(req,res){
   res.render('other-page');
 });
 
+app.get('/todo', function(req,res){
+  res.render('form');
+});
+
+app.post('/todo', function(req, res, next){
+  if (req.body.taskView == "non-completed"){
+    mysql.pool.query('SELECT * FROM todo WHERE done = False', function(err,row,fields){
+      if(err){
+        next(err);
+      }else{
+        var arr = [];
+        var r = Array.from(row);
+        for (var i = 0; i < r.length; i++){
+          arr.push(JSON.parse(JSON.stringify(r[i])));
+        }
+        var context = {};
+        context.content = arr;
+        res.render('form', context)
+      }      
+    });
+  }else if (req.body.taskView = "completed"){
+    mysql.pool.query('SELECT * FROM todo WHERE done = True', function(err,row,fields){
+      if(err){
+        next(err);
+      }else{
+        var arr = [];
+        var r = Array.from(row);
+        for (var i = 0; i < r.length; i++){
+          arr.push(JSON.parse(JSON.stringify(r[i])));
+        }
+        var context = {};
+        context.content = arr;
+        res.render('form', context)
+      }      
+    });
+  }
+});
+
 app.get('/weather', function(req, res, next){
   var context = {};
   request(`http://api.openweathermap.org/data/2.5/weather?q=Seattle,WA,us&units=metric,&appid=${apiKey}`, function (error, response, body){
     if (!error && response.statusCode < 400){
       context.data1 = body;
       var payload = {c:"a", d:"c", e:"f"};
-      var send = {"url":"http://flip3.engr.oregonstate.edu:9794/?candy=Hershey", "method": "POST", "headers": {"Content-Type": "application/JSON"}, "body":JSON.stringify(payload)};
-      request(send, function(error, response, body){
-        if (!error && response.statusCode < 400){
-          context.data2 = body;
-          res.render('weather', context);
-        }else{
-          if (response){
-            console.log(response.statusCode);
-          }
-          next(error);
-        }
-      });
+      //var send = {"url":"http://flip3.engr.oregonstate.edu:9794/?candy=Hershey", "method": "POST", "headers": {"Content-Type": "application/JSON"}, "body":JSON.stringify(payload)};
+      //request(send, function(error, response, body){
+      //  if (!error && response.statusCode < 400){
+      //    context.data2 = body;
+      //    res.render('weather', context);
+      //  }else{
+      //    if (response){
+      //      console.log(response.statusCode);
+      //    }
+      //    next(error);
+      //  }
+      //});
     }else{
       console.log(error);
       if (response){

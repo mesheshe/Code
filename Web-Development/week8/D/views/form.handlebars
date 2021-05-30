@@ -1,0 +1,14 @@
+<form action = "/todo" method = "POST" style = "display: inline-block;">
+    <input type = "hidden" name = "taskView" value = "completed">
+    <input type = "submit" value = "Completed Task">
+</form>
+<form action = "/todo" method = "POST" style = "display: inline-block;">
+    <input type = "hidden" name = "taskView" value = "non-completed">
+    <input type = "submit" value = "Non-completed Task">
+</form>
+<ul>
+    {{#each content}}
+        <li> {{this.task}}
+    {{/each}}    
+</ul>    
+
