@@ -6,6 +6,14 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch MakeCode",
+            "cwd": "C:\\Users\\alias\\Desktop\\Code\\Java\\ass8",
+            "request": "launch",
+            "mainClass": "MakeCode",
+            "projectName": "Code_c7451bde"
+        },
+        {
+            "type": "java",
             "name": "Launch QuestionMain",
             "cwd": "C:\\Users\\alias\\Desktop\\Code\\Java\\ass7",
             "request": "launch",
