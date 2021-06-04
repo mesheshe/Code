@@ -1,13 +1,10 @@
 # Course: CS261 - Data Structures
-# Student Name:
-# Assignment:
-# Description:
+# Student Name: Elias Meshesha
+# Assignment: 5
+# Description: Implement a hash table 
 
 
 # Import pre-written DynamicArray and LinkedList classes
-from a5_include import DynamicArray
-from a5_include import LinkedList
-from a5_include import SLNode
 from a5_include import *
 
 
@@ -61,7 +58,7 @@ class HashMap:
 
     def clear(self) -> None:
         """
-        TODO: Write this implementation
+        Clears the conent of each bucket to return an empty table 
         """
         for i in range(self.capacity):
             self.buckets.set_at_index(i, LinkedList()) 
@@ -69,7 +66,7 @@ class HashMap:
 
     def get(self, key: str) -> object:
         """
-        TODO: Write this implementation
+        Given a key, this function returns the value of said key
         """
         if not self.contains_key(key):
             return None
@@ -79,7 +76,7 @@ class HashMap:
 
     def put(self, key: str, value: object) -> None:
         """
-        TODO: Write this implementation
+        Places the given key and value in the table 
         """
         index = self.hash_function(key) % self.capacity
         LL = self.buckets.get_at_index(index)
@@ -92,7 +89,7 @@ class HashMap:
 
     def remove(self, key: str) -> None:
         """
-        TODO: Write this implementation
+        Removes the key-value pair from the table if it exists
         """
         if not self.contains_key(key):
             return
@@ -103,7 +100,7 @@ class HashMap:
         
     def contains_key(self, key: str) -> bool:
         """
-        TODO: Write this implementation
+        Returns True if the given key is present in the table
         """
         index = self.hash_function(key) % self.capacity
         LL = self.buckets.get_at_index(index)
@@ -112,7 +109,7 @@ class HashMap:
 
     def empty_buckets(self) -> int:
         """
-        TODO: Write this implementation
+        Returns the count of empty buckets
         """
         count = 0
         for i in range(self.capacity):
@@ -122,13 +119,14 @@ class HashMap:
 
     def table_load(self) -> float:
         """
-        TODO: Write this implementation
+        Gives the load factor of the hash table, assumes uniform distribution 
         """
         return self.size/self.capacity
 
     def resize_table(self, new_capacity: int) -> None:
         """
-        TODO: Write this implementation
+        Given the new_capacity, this function resizes the table by rehashing all 
+        the key-value pair into the new table. self.capacity is also changed as a result
         """
         if new_capacity < 1:
             return 
@@ -142,7 +140,7 @@ class HashMap:
 
     def get_keys(self) -> DynamicArray:
         """
-        TODO: Write this implementation
+        Returns an array that contains all keys present in the table
         """
         returnDA = DynamicArray()
         

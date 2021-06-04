@@ -29,7 +29,7 @@ mysql.pool.getConnection(function(error){
 // Need to implement a clear table function
 app.get('/', function(req,res, next){
     if (req.query.clear == "true"){
-        mysql.pool.query("DELETE FROM weighttracker", function(err,rows,fields){
+        mysql.pool.query("DELETE FROM weightTracker", function(err,rows,fields){
             if (err){
                 next(err);
             }else{

@@ -59,6 +59,10 @@ submit1.addEventListener("click", function(event){
             var response = JSON.parse(req.responseText);
             response = JSON.parse(response.results);
             if (response != null){
+                names.value = null;
+                reps.value = null;
+                weight.value = null;
+                date.value = null;
                 build(response);
             }
         }else{
@@ -120,6 +124,10 @@ function build(response){
     var aDate = response.date;
     if (aDate != null){
         aDate = aDate.substring(0,aDate.indexOf("T"));
+        var month = aDate.substring(5,7);
+        var day = aDate.substring(8,10);
+        var year = aDate.substring(0,4);
+        aDate = month + '-' + day + '-' + year;
     }
     var date = document.createElement("td");
     date.textContent = aDate;

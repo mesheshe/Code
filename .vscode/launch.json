@@ -6,6 +6,22 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Encode",
+            "cwd": "C:\\Users\\alias\\Desktop\\Code\\Java\\ass8",
+            "request": "launch",
+            "mainClass": "Encode",
+            "projectName": "Code_c7451bde"
+        },
+        {
+            "type": "java",
+            "name": "Launch Decode",
+            "cwd": "C:\\Users\\alias\\Desktop\\Code\\Java\\ass8",
+            "request": "launch",
+            "mainClass": "Decode",
+            "projectName": "Code_c7451bde"
+        },
+        {
+            "type": "java",
             "name": "Launch MakeCode",
             "cwd": "C:\\Users\\alias\\Desktop\\Code\\Java\\ass8",
             "request": "launch",

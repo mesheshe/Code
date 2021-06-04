@@ -1,11 +1,10 @@
 # Course: CS261 - Data Structures
-# Student Name:
-# Assignment:
-# Description:
+# Student Name: Elias Meshesha 
+# Assignment: 5
+# Description: Impelements a min heap
 
 
 # Import pre-written DynamicArray and LinkedList classes
-from a5_include import DynamicArray
 from a5_include import *
 
 
@@ -47,7 +46,10 @@ class MinHeap:
 
     def add(self, node: object) -> None:
         """
-        TODO: Write this implementation
+        Adds the given node to the heap. It does this by adding the node to the 
+        end of the heap list and then percolating it upward by constantly swapping 
+        the parent node with the child node, if the parent node's value is greater 
+        than the child node's value
         """
         self.heap.append(node)
         i = self.heap.length() - 1
@@ -59,7 +61,8 @@ class MinHeap:
 
     def get_min(self) -> object:
         """
-        TODO: Write this implementation
+        Returns the minimum value stored in the heap, which is stored in the root 
+        of the tree, or otherwise known as index 0.
         """
         if self.is_empty():
             raise MinHeapException
@@ -67,7 +70,10 @@ class MinHeap:
 
     def remove_min(self) -> object:
         """
-        TODO: Going to be complete with no holes
+        Removes and returns the minimum value. It does so by first saving the minmum
+        value, and then swapping the root with last element leaf child, and then popping
+        off the last element. With the new root, it is percolated down the tree, by
+        checking to see if the child's value is lower than the parent
         """
         if self.is_empty():
             raise MinHeapException
@@ -101,7 +107,11 @@ class MinHeap:
     
     def build_heap(self, da: DynamicArray) -> None:
         """
-        TODO: Write this implementation
+        From an unsorted array, this function builds a heap. It does so in O(N) time.
+        It first starts with the leaves nodes, it assumes each of them are all valid 
+        sub heaps, then it goes up a level, and makes sure that is a valid subheap, and
+        it does so for each level of the tree. Until it finally ends with a valid min heap 
+        overall 
         """
         self.heap = DynamicArray()
         len =  da.length()
@@ -114,7 +124,7 @@ class MinHeap:
             x = False
             if (L < len and self.heap.get_at_index(L) < compareVal) or (R < len and self.heap.get_at_index(R) < compareVal):
                 x = True 
-            while i < len//2 and L < len and x:
+            while i < len//2 and x:
                 if L < len:
                     leftVal = self.heap.get_at_index(L)
                 else:

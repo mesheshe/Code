@@ -1,7 +1,7 @@
 # Course: CS261 - Data Structures
-# Student Name:
-# Assignment:
-# Description:
+# Student Name: Elias Meshesha 
+# Assignment: 5
+# Description: Builds an AVL tree.
 
 
 import random
@@ -166,6 +166,10 @@ class AVL:
     # -----------------------------------------------------------------------
     
     def find(self, node, value, tof = True):
+        """
+        Takes in a value and returns the node which match the value. If false it will 
+        return the parent node or the node if already exists.
+        """
         if node is not None:
             if node.value > value:
                 if node.left is not None:
@@ -181,6 +185,12 @@ class AVL:
                     return node 
                     
     def updateHeight(self, node):
+        """
+        Takes in a node and updates the height of the node and all 
+        ancestors before it. How a height is calculated is by using
+        max(node.left.height + node.right.height) + 1, for non-leaf.
+        For leaves height = 0
+        """
         #node is being updated 
         if node.left is not None and node.right is not None:
             if node.left.height > node.right.height:
@@ -210,6 +220,10 @@ class AVL:
             node = node.parent
 
     def rotateRight(self, node):
+        """
+        Takes in a node and performs a right rotation assuming that all pre-conditions 
+        are met. Updates the parent for all nodes involved. 
+        """
         # point the parents to it 
         parent = None
         if node.parent is not None:
@@ -232,6 +246,10 @@ class AVL:
         self.updateHeight(node)
 
     def rotateLeft(self,node):
+        """
+        Takes in a node and performs a left rotation assuming that all pre-conditions 
+        are met. Updates the parent for all nodes involved. 
+        """
         # you got to think of this like a linked list 
         parent = None
         if node.parent is not None:
@@ -254,6 +272,10 @@ class AVL:
         self.updateHeight(node)
 
     def rebalance(self, node):
+        """
+        Takes in a node and rebalances the node starting from that node and all parents involved
+        Everything below that node is assumed to already be balanced.
+        """
         # we are starting from the node we just added in, so everything below 
         # that is already balanced, so we don't need to worry, so we really 
         # should care about the case where node.left and node.right are both not
@@ -291,7 +313,7 @@ class AVL:
             
     def add(self, value: object) -> None:
         """
-        TODO: Write your implementation
+        Adds a node containing value to the AVL tree, if it doesn't already exist
         """
         node = TreeNode(value)
         if self.root is None:
@@ -310,6 +332,9 @@ class AVL:
         self.rebalance(node)
 
     def removeRoot(self):
+        """
+        This function is called to remove a node that is a root.
+        """
         if self.root.left is None and self.root.right is None:
             self.root = None 
             return
@@ -346,6 +371,9 @@ class AVL:
         self.rebalance(self.root)
         
     def removeNonRoot(self, node):
+        """
+        This function is called to removes a node if it is non-root.
+        """
         parent = node.parent
         if node.left is None and node.right is None:
             if node == parent.left:
@@ -403,7 +431,7 @@ class AVL:
 
     def remove(self, value: object) -> bool:
         """
-        TODO: Write your implementation
+        Removes a node containing value from the tree and returns True if it does so
         """
         if self.root is None:
             return False 
@@ -421,163 +449,9 @@ class AVL:
 
 
 if __name__ == '__main__':
-    
-    print("\nPDF - method add() example 1")
-    print("----------------------------")
     test_cases = (
-        #(6,5,4,2,1),  # RR
-        #(3, 2, 1),  # LL
-        #(1, 3, 2),  # RL
-        #(3, 1, 2),  # LR
+        (1, 2, 3), #RR
+        (3, 2, 1), #LL
+        (1, 3, 2), #RL
+        (3, 1, 2), #LR
     )
-    for case in test_cases:
-        avl = AVL(case)
-        node = avl.root
-        q = Queue()
-        q.enqueue(node)
-        while not q.is_empty():
-            node = q.dequeue()
-            if node.left is not None:
-                q.enqueue(node.left)
-            if node.right is not None:
-                q.enqueue(node.right)
-            if node.parent:
-                # parent and child pointers are in sync
-                if node.value < node.parent.value:
-                    check_node = node.parent.left
-                else:
-                    check_node = node.parent.right
-                if check_node != node:
-                    print(avl)
-                    print("check_node =",check_node.value,"node =", node.value,"node.parent =", node.parent.value,"node.parent.left =", node.parent.left.value,"node.parent.right =", node.parent.right.value)
-            else:
-                # NULL parent is only allowed on the root of the tree
-                if node != avl.root:
-                    print("sync2")
-        print(avl)
-    
-    print("\nPDF - method add() example 2")
-    print("----------------------------")
-    test_cases = (
-        #(10, 20, 30, 40, 50),   # RR, RR
-        #(10, 20, 30, 50, 40),   # RR, RL
-        #(30, 20, 10, 5, 1),     # LL, LL
-        #(30, 20, 10, 1, 5),     # LL, LR
-        #(5, 4, 6, 3, 7, 2, 8),  # LL, RR
-        #(range(0, 30, 3)),
-        #(range(0, 31, 3)),
-        #(range(0, 34, 3)),
-        (range(10, -10, -2)),
-        #('A', 'B', 'C', 'D', 'E'),
-        #(1, 1, 1, 1),
-    )
-    for case in test_cases:
-        avl = AVL(case)
-        print('INPUT  :', case)
-        print('RESULT :', avl)
-        node = avl.root
-        q = Queue()
-        q.enqueue(node)
-        while not q.is_empty():
-            node = q.dequeue()
-            if node.left is not None:
-                q.enqueue(node.left)
-            if node.right is not None:
-                q.enqueue(node.right)
-            if node.parent:
-                # parent and child pointers are in sync
-                if node.value < node.parent.value:
-                    check_node = node.parent.left
-                else:
-                    check_node = node.parent.right
-                if check_node != node:
-                    print(avl)
-                    print("check_node =",check_node.value,"node =", node.value,"node.parent =", node.parent.value,"node.parent.left =", node.parent.left.value,"node.parent.right =", node.parent.right.value)
-            else:
-                # NULL parent is only allowed on the root of the tree
-                if node != avl.root:
-                    print("sync2")
-        
-    print("\nPDF - method add() example 3")
-    print("----------------------------")
-    for _ in range(100):
-        case = list(set(random.randrange(1, 20000) for _ in range(6)))
-        avl = AVL()
-        for value in case:
-            avl.add(value)
-        if not avl.is_valid_avl():
-            raise Exception("PROBLEM WITH ADD OPERATION")
-    print('add() stress test finished')
-    
-    print("\nPDF - method remove() example 1")
-    print("-------------------------------")
-    test_cases = (
-        ((1, 2, 3), 1),  # no AVL rotation
-        ((1, 2, 3), 2),  # no AVL rotation
-        ((1, 2, 3), 3),  # no AVL rotation
-        ((50, 40, 60, 30, 70, 20, 80, 45), 0),
-        ((50, 40, 60, 30, 70, 20, 80, 45), 45),  # no AVL rotation
-        ((50, 40, 60, 30, 70, 20, 80, 45), 40),  # no AVL rotation
-        ((50, 40, 60, 30, 70, 20, 80, 45), 30),  # no AVL rotation
-    )
-    for tree, del_value in test_cases:
-        avl = AVL(tree)
-        print('INPUT  :', avl, "DEL:", del_value)
-        avl.remove(del_value)
-        print('RESULT :', avl)
-    
-    print("\nPDF - method remove() example 2")
-    print("-------------------------------")
-    test_cases = (
-        ((50, 40, 60, 30, 70, 20, 80, 45), 20),  # RR
-        ((50, 40, 60, 30, 70, 20, 80, 15), 40),  # LL
-        ((50, 40, 60, 30, 70, 20, 80, 35), 20),  # RL
-        ((50, 40, 60, 30, 70, 20, 80, 25), 40),  # LR
-    )
-    for tree, del_value in test_cases:
-        avl = AVL(tree)
-        print('INPUT  :', avl, "DEL:", del_value)
-        avl.remove(del_value)
-        print('RESULT :', avl)
-
-    print("\nPDF - method remove() example 3")
-    print("-------------------------------")
-    #case = range(-9, 2, 2)
-    case = range(-9, 16, 2)
-    avl = AVL(case)
-    for del_value in case:
-        print('INPUT  :', avl, del_value)
-        avl.remove(del_value)
-        print('RESULT :', avl)
-    
-    print("\nPDF - method remove() example 4")
-    print("-------------------------------")
-    case = range(0, 34, 3)
-    avl = AVL(case)
-    for _ in case[:-2]:
-        printOnce = False
-        #if avl.root.value == 27:
-        #    printOnce = True
-        print('INPUT  :', avl, avl.root.value)
-        avl.remove(avl.root.value)
-        #if printOnce:
-        #    printOnce = False
-        print('RESULT :', avl)
-    
-    print("\nPDF - method remove() example 5")
-    print("-------------------------------")
-    for _ in range(100):
-        case = list(set(random.randrange(1, 20000) for _ in range(900)))
-        avl = AVL(case)
-        for value in case[::2]:
-            avl.remove(value)
-        if not avl.is_valid_avl():
-            raise Exception("PROBLEM WITH REMOVE OPERATION")
-    print('remove() stress test finished')
-    
-
-    avl = AVL([75, 70, 100, 60, 80, 105, 77, 120])
-    avl.remove(120)
-    print(avl)
-    avl.remove(60)
-    print(avl)
