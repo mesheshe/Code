@@ -1,7 +1,7 @@
-# Course: 
-# Author: 
-# Assignment: 
-# Description:
+# Course: CSE 261 - Data Structures 
+# Author: Elias Meshesha 
+# Assignment: 6
+# Description: Build an undirected graph.
 
 
 class UndirectedGraph:
@@ -172,6 +172,10 @@ class UndirectedGraph:
 
 
     def cycle_search(self,v,L, path):
+        """
+        Helper function that searches for cycle. Will return True if found otherwise 
+        returns False.
+        """
         if path.count(path[-1]) > 1:
             return True    
         boole = False

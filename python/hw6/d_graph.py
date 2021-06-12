@@ -1,7 +1,7 @@
 # Course: CS261 - Data Structures
-# Author:
-# Assignment:
-# Description:
+# Author: Elias Meshesha 
+# Assignment: 6
+# Description: Builds a directed graph.
 
 import heapq 
 
@@ -54,7 +54,7 @@ class DirectedGraph:
 
     def add_vertex(self) -> int:
         """
-        TODO: Write this implementation
+        Adds a new vertex to the graph. 
         """
         self.v_count += 1
 
@@ -73,7 +73,7 @@ class DirectedGraph:
 
     def add_edge(self, src: int, dst: int, weight=1) -> None:
         """
-        TODO: Write this implementation
+        Adds an edge to the graph.
         """
         if (src == dst) or (weight < 0) or (self.v_count <= src) or (self.v_count <= dst) or (src < 0) or (dst < 0):
             return
@@ -82,7 +82,7 @@ class DirectedGraph:
 
     def remove_edge(self, src: int, dst: int) -> None:
         """
-        TODO: Write this implementation
+        Remove edge from the graph
         """
         if (src == dst) or (self.v_count <= src) or (self.v_count <= dst) or (src < 0) or (dst < 0):
             return
@@ -91,7 +91,7 @@ class DirectedGraph:
 
     def get_vertices(self) -> []:
         """
-        TODO: Write this implementation
+        Return list of vertices in the graph 
         """
         arr = []
         for num in range(self.v_count):
@@ -100,7 +100,7 @@ class DirectedGraph:
 
     def get_edges(self) -> []:
         """
-        TODO: Write this implementation
+        Return list of edges in the graph 
         """
         arr = []
         for i in range(self.v_count):
@@ -111,7 +111,7 @@ class DirectedGraph:
 
     def is_valid_path(self, path: []) -> bool:
         """
-        TODO: Write this implementation
+        Return true if provided path is valid, False otherwise
         """
         if len(path) == 0 or len(path) == 1:
             if len(path) == 1:
@@ -127,7 +127,8 @@ class DirectedGraph:
 
     def dfs(self, v_start, v_end=None) -> []:
         """
-        TODO: Write this implementation
+        Return list of vertices visited during DFS search
+        Vertices are picked in order
         """
         reachable, stack, x = [], [], True
         if v_start < 0 or v_start >= self.v_count:
@@ -149,7 +150,8 @@ class DirectedGraph:
 
     def bfs(self, v_start, v_end=None) -> []:
         """
-        TODO: Write this implementation
+        Return list of vertices visited during BFS search
+        Vertices are picked in order
         """
         reachable, queue, x = [], [], True
         if v_start < 0 or v_start >= self.v_count:
@@ -169,6 +171,10 @@ class DirectedGraph:
         return reachable
 
     def cycle_search(self, i, path):
+        """
+        Helper function that searches for cycle. Will return True if found otherwise 
+        returns False.
+        """
         if path.count(path[-1]) > 1:
             return True
         bool = False
@@ -181,7 +187,7 @@ class DirectedGraph:
 
     def has_cycle(self):
         """
-        TODO: Write this implementation
+        Return True if graph contains a cycle, False otherwise
         """
         for i in range(self.v_count):
             if self.cycle_search(i, [i]):
@@ -189,7 +195,11 @@ class DirectedGraph:
         return False
 
     def weight(self, k, l): 
-        m, reachable, q ={}, []
+        """
+        Helper function that performs the Dijkstra's algo and returns the minimum
+        distance between the given src and a given vertex.
+        """
+        m, q ={}, []
         m[k] = self.adj_matrix[k][k]
         heapq.heappush(q, m[k])
 
@@ -200,18 +210,18 @@ class DirectedGraph:
                 if m[ele] == d_i:
                     dupArr.append(ele)
             for i in dupArr:
-                if i not in reachable: # I feel like I don't need
-                    reachable.append(i) # these two lines 
-                    for j in range(self.v_count):
-                        d = self.adj_matrix[i][j]
-                        if d != 0 and (j not in m or m[j] > d+d_i):
-                            m[j] = d + d_i
-                            heapq.heappush(q, m[j])
+                for j in range(self.v_count):
+                    d = self.adj_matrix[i][j]
+                    if d != 0 and (j not in m or m[j] > d+d_i):
+                        m[j] = d + d_i
+                        heapq.heappush(q, m[j])
         return m[l]
 
     def dijkstra(self, src: int) -> []:
         """
-        TODO: Write this implementation
+        Returns an array that holds the minimum distance between src and a given
+        vertex. inf if the path doesn't exist, 0 if src is the target, and finally 
+        some distance for everything else.
         """
         arr = []
         for j in range(self.v_count):
@@ -224,33 +234,5 @@ class DirectedGraph:
                 arr.append(self.weight(src, j))
         return arr
 
-import math  # For testing purposes only 
 if __name__ == '__main__':
-    a = [ 0,  0,  0,  7,  0,  0,  0,  0,  0,  0,  0,  0,
-        13,  0,  0,  0,  0,  0,  0,  3,  0,  0,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  0,  9,  0,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-        18,  0,  0,  0,  0,  0,  0,  0,  0, 18,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  0,  0, 17,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-         0,  0,  0,  0,  5,  0,  1,  0,  0,  0,  0,  0,
-         0,  0,  0,  0,  0,  0, 11,  0,  0,  0,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  7,  0,  7,  0,  0
-    ]
-
-    side =  int(math.sqrt(len(a)))
-    edges = []
-    for i in range(side):
-        for j in range(side):
-            if a[i*side + j] != 0:
-                edges.append((i,j, a[i*side + j]))
-
-    print("\nPDF - dijkstra() example 1")
-    print("--------------------------")
-    g = DirectedGraph(edges)
-    print(g)
-    print(f'DIJKSTRA {5} {g.dijkstra(5)}')
-    #28 needs to be 11
-
+    pass

@@ -1,0 +1,75 @@
+def insert remove:
+    do the task 
+    p = node.parent or parent of removed node  
+    while p is not None:
+        rebalance(p)
+        p = p.parent 
+
+def rotateLeft(node):
+    center = node.right
+    node.right = center.left 
+    if node.right is not None:
+        node.right.parent = node 
+    center.left = node
+    node.parent = center 
+    updateHeight(node)
+    updateHeight(center)
+    return center 
+
+def rotateRight(node):
+    center = node.left 
+    node.left = center.right
+    if node.left is not None:
+        node.left.parent = node
+    center.right = node
+    node.parent = center 
+    updateHeight(node)
+    updateHeight(center)
+    return center 
+
+def balanceFactor(node):
+    if node is None:
+        return 0
+    right = node.right
+    left = node.left 
+    if right is None:
+        right = 0
+    else:
+        right = right.height 
+    if left is None:
+        left = 0
+    else:
+        left = left.height
+    return right - left
+
+def updateHeight(node):
+    leftHeight, rightHeight
+    if node.left is not None:
+        leftHeight = node.left.height
+    else:
+        leftHeight = 0
+    if node.right is not None:
+        rightHeight = node.right.height
+    else:
+        rightHeight = 0
+    node.height = max(leftHeight, rightHeight) + 1
+
+def rebalance(node):
+    if  balanceFactor(node) < -1:
+        if balanceFactor(node.left) > 0:
+            node.left = rotateLeft(node.left)
+            node.left.parent = node 
+        newRoot = rotateRight(node)
+        newRoot.parent = node.parent 
+        node.parent = newRoot
+    elif balanceFactor(node) > 1:
+        if balanceFactor(node.right) < 0:
+            node.right = rotateRight(node.right)
+            node.right.parent = node 
+        newRoot = rotateLeft(node)
+        newRoot.parent = node.parent 
+        node.parent = newRoot
+    else:
+        updateHeight(node)
+
+

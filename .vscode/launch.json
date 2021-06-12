@@ -311,13 +311,6 @@
             "projectName": "Code_c7451bde"
         },
         {
-            "type": "java",
-            "name": "Launch Main",
-            "request": "launch",
-            "mainClass": "Java.Proj1.Main",
-            "projectName": "test_a4644c"
-        },
-        {
             "name": "g++.exe - Build and debug active file",
             "type": "cppdbg",
             "request": "launch",

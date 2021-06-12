@@ -1,0 +1,58 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "hangman",
+			"path": "python\\hangman"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"iostream": "cpp",
+			"map": "cpp",
+			"initializer_list": "cpp",
+			"vector": "cpp",
+			"xiosbase": "cpp",
+			"xstring": "cpp",
+			"xtree": "cpp",
+			"xutility": "cpp"
+		},
+		"java.project.sourcePaths": [
+			"Java/test",
+			"Java/queens",
+			"Java/day5",
+			"Java/day4",
+			"Java/day3",
+			"Java/day2",
+			"Java/day1",
+			"Java/ass7",
+			"Java/ass6",
+			"Java/ass5",
+			"Java/ass4",
+			"Java/ass3",
+			"Java/ass8"
+		],
+		"liveServer.settings.multiRootWorkspaceName": "Code",
+		"java.project.referencedLibraries": [
+			"lib/**/*.jar",
+			"Java/ass6/LetterInventory.jar"
+		],
+		"sqltools.connections": [
+			{
+				"mysqlOptions": {
+					"authProtocol": "default"
+				},
+				"previewLimit": 50,
+				"server": "localhost",
+				"port": 3306,
+				"askForPassword": true,
+				"driver": "MySQL",
+				"name": "MySQL80",
+				"database": "dcb",
+				"username": "root"
+			}
+		]
+	}
+}

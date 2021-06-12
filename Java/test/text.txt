@@ -1,0 +1,76 @@
+public class IntTreeNode {
+    public int data;          // data stored in this node
+    public IntTreeNode left;  // reference to left subtree
+    public IntTreeNode right; // reference to right subtree
+    <constructors>
+}
+
+public class IntTree {
+    private IntTreeNode overallRoot;
+    <methods>
+
+    public tighten(){
+        overallRoot = tight(overallRoot);
+    }
+
+    private IntTreeNode tight(IntTreeNode root){
+        if root != null{
+            if (root.right == null && root.left != null){
+                root = tight(root.left);
+            }
+            if (root.left == null && root.right != null){
+                root = tight(root.right);
+            }
+            if (root.left != null && root.right != null){
+                root.left = tight(root.left);
+                root.right = tight(root.right);
+            }
+            if (root.left == null && root.right == null){
+                return root;
+            }
+        }
+        return root;
+    }
+}
+
+public class ListNode {
+    public int data;       // data stored in this node
+    public ListNode next;  // link to next node in the list
+    <constructors>
+}
+ 
+public class LinkedIntList {
+    private ListNode front;
+    <methods>
+    public int shiftLastOf3{
+        int count;
+        boolean x = True;
+        if (front == null || front.next == null || front.next.next == null){
+            return 0;
+        }
+        ListNode curr;
+        ListNode currFront;
+        ListNode curr2;
+        ListNode curr2Front;
+        ListNode itt = front;
+        while (true){
+            ListNode preserve = itt.next.next.next;
+            if (currFront == null){
+                curr = itt;
+                curr2 = curr.next.next;
+                currFront = curr;
+                curr2Front = curr2;
+                c
+            }
+            
+            itt = preserve;
+            if (itt == null || itt.next == null || itt.next.next == null){
+                front = curr2Front;
+                curr2.next = currFront;
+                curr.next = itt;
+                return count;
+            }
+        }    
+    }
+
+}
